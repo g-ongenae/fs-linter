@@ -240,7 +240,8 @@ module.exports = {
             "single"
         ],
         "radix": "error",
-        "require-await": "error",
+		// Bug from eslint: https://github.com/eslint/eslint/issues/10000
+		// "require-await": "error",
         "require-jsdoc": "off",
         "rest-spread-spacing": "error",
         "semi": "error",

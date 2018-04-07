@@ -50,8 +50,6 @@ async function readRecursivelyDirectory (directory, options) {
 
 	const files = await readdir(directory);
 
-	// Bug from eslint: https://github.com/eslint/eslint/issues/10000
-	// eslint-disable-next-line require-await
 	return Promise.all(files.map(async (f) => {
 		return getFileDescriptor(directory, f, options);
 	}));
