@@ -1,0 +1,35 @@
+{
+  "name": "fs-linter",
+  "version": "0.0.1",
+  "description": "File management linter for mad people",
+  "bin": "bin/fs-linter.js",
+  "repository": "git@github.com/g-ongenae/fs-linter",
+  "author": "Guillaume Ongenae <guillaume.ongenae@gmail.com> (http://g-ongenae.github.io/)",
+  "license": "MIT",
+  "scripts": {
+    "install-global": "yarn global add npx",
+    "lint-js": "npx eslint .",
+    "lint-md": "npx markdownlint -i ./node_modules/ .",
+    "lint": "yarn run lint-js && yarn run lint-md",
+    "pretest": "yarn check --integrity && yarn run lint",
+    "test": "npx ava",
+    "cover": "npx nyc npx ava"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "eslint": "^4.19.1",
+    "markdownlint-cli": "^0.8.1",
+    "nyc": "^11.6.0"
+  },
+  "ava": {
+    "sources": [
+      "./test/**/*.js"
+    ],
+    "concurrency": 5,
+    "failFast": true,
+    "failWithoutAssertions": false,
+    "tap": false,
+    "compileEnhancements": false
+  }
+}
