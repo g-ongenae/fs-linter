@@ -6,7 +6,8 @@ module.exports = {
     },
     "extends": "eslint:recommended",
     "parserOptions": {
-        "sourceType": "module"
+        "sourceType": "module",
+        "ecmaVersion": 8
     },
     "rules": {
         "accessor-pairs": "error",
@@ -68,10 +69,11 @@ module.exports = {
         "func-call-spacing": "error",
         "func-name-matching": "error",
         "func-names": ["error", "as-needed"],
-        "func-style": [
-            "error",
-            "expression"
-        ],
+		// Mess up with the use of async/await
+        // "func-style": [
+        //    "error",
+        //    "expression"
+        // ],
         "function-paren-newline": ["error", "multiline"],
         "generator-star-spacing": "error",
         "getter-return": "error",
