@@ -1,5 +1,6 @@
 'use strict';
 
+const { isEmpty } = require('lodash');
 const { resolve } = require('path');
 const { cleanArray } = require('./utils/utils');
 
@@ -21,13 +22,22 @@ async function applyRuleOnWholeTree (rulePath, treeView, options) {
 	// eslint-disable-next-line no-undef
 	const functionFullPath = resolve(`${__dirname}/rules`, rulePath);
 	// eslint-disable-next-line global-require
-	const ruleFunction = await require(functionFullPath);
+	const rule = await require(functionFullPath);
 
-	const problems = await Promise.all(treeView.map(async (treeElement) => {
-		return applyRuleOnSubTree(ruleFunction, treeElement, options);
+	let problems = await Promise.all(treeView.map(async (treeElement) => {
+		return applyRuleOnSubTree(rule.function, treeElement, options);
 	}));
 
-	return cleanArray(problems);
+	problems = cleanArray(problems);
+
+	if (isEmpty(problems)) {
+		return null;
+	} else {
+		return {
+			rule: rule.name,
+			problems,
+		};
+	}
 }
 
 async function applyEachRule (rules, treeView, options) {
