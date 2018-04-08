@@ -25,7 +25,7 @@ async function applyRuleOnWholeTree (rulePath, treeView, options) {
 	const rule = await require(functionFullPath);
 
 	let problems = await Promise.all(treeView.map(async (treeElement) => {
-		return applyRuleOnSubTree(rule.function, treeElement, options);
+		return applyRuleOnSubTree(rule.check, treeElement, options);
 	}));
 
 	problems = cleanArray(problems);
