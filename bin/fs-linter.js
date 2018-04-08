@@ -16,8 +16,9 @@ function list (val) {
 async function main (directory, rules, options) {
 	const treeView = await readRecursivelyDirectory(directory);
 	const problems = await applyEachRule(rules, treeView, options);
-	const output = prettifyOutputForTerminal(problems);
-	console.log(output); // eslint-disable-line
+	const { message, exitCode } = prettifyOutputForTerminal(problems);
+	console.log(message); // eslint-disable-line
+	process.exit(exitCode); // eslint-disable-line
 }
 
 program

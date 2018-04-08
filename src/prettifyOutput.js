@@ -36,7 +36,10 @@ function prettifyOneOutputProblem (output) {
 
 function prettifyOutputForTerminal (output) {
 	if (isEmpty(output)) {
-		return chalk.green('You don\'t have any problem in your file managemebnt, congrats!');
+		return {
+			message: chalk.green('You don\'t have any problem in your file managemebnt, congrats!'),
+			exitCode: 0
+		};
 	}
 
 	const prettifyOutput = [];
@@ -55,7 +58,10 @@ function prettifyOutputForTerminal (output) {
 	let prettifyOutputAsString = prettifyOutput.map((o) => o.prettifyOutput).join('\n');
 	prettifyOutputAsString += `\n\n${output.length} different(s) problem(s) and ${problemSum} problem(s) overall found.`;
 
-	return prettifyOutputAsString;
+	return {
+		message: prettifyOutputAsString,
+		exitCode: 1,
+	};
 }
 
 module.exports = {
