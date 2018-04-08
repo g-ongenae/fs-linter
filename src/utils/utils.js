@@ -7,7 +7,7 @@ function cleanArray (arr) {
 }
 
 function isUnwanted (name, options) {
-	if (options.excludes) {
+	if (options && options.excludes) {
 		return options.excludes.some((r) => {
 			return r.test(name);
 		});
