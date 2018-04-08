@@ -35,6 +35,8 @@ async function applyRuleOnWholeTree (rulePath, treeView, options) {
 	} else {
 		return {
 			rule: rule.name,
+			description: rule.description,
+			severity: rule.severity,
 			problems,
 		};
 	}
