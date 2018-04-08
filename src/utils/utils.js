@@ -9,7 +9,8 @@ function cleanArray (arr) {
 function isUnwanted (name, options) {
 	if (options && options.excludes) {
 		return options.excludes.some((r) => {
-			return r.test(name);
+			const re = new RegExp(r);
+			return re.test(name);
 		});
 	}
 

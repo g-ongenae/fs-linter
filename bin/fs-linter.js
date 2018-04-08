@@ -14,7 +14,7 @@ function list (val) {
 }
 
 async function main (directory, rules, options) {
-	const treeView = await readRecursivelyDirectory(directory);
+	const treeView = await readRecursivelyDirectory(directory, options);
 	const problems = await applyEachRule(rules, treeView, options);
 	const { message, exitCode } = prettifyOutputForTerminal(problems);
 	console.log(message); // eslint-disable-line
@@ -31,7 +31,7 @@ program
 	.parse(process.argv); // eslint-disable-line
 
 if (program.directory && program.rules) {
-	const opt = program.option || {};
+	const opt = program.options || {};
 	const dir = resolve(program.directory);
 	main(dir, program.rules, opt);
 } else {
