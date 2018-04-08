@@ -16,6 +16,7 @@
     "cover": "npx nyc npx ava"
   },
   "dependencies": {
+    "chalk": "^2.3.2",
     "commander": "^2.15.1",
     "lodash": "^4.17.5"
   },

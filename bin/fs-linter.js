@@ -7,7 +7,7 @@ const { resolve } = require('path');
 const { version, description } = require('../package.json');
 const { readRecursivelyDirectory } = require('../src/readFiles');
 const { applyEachRule } = require('../src/applyRules');
-// const { prettifyOutput } = require('../src/prettifyOutput');
+const { prettifyOutputForTerminal } = require('../src/prettifyOutput');
 
 function list (val) {
 	return val.split(',');
@@ -16,8 +16,8 @@ function list (val) {
 async function main (directory, rules, options) {
 	const treeView = await readRecursivelyDirectory(directory);
 	const problems = await applyEachRule(rules, treeView, options);
-	// const output = await prettifyOutput(problems);
-	console.log(problems); // eslint-disable-line
+	const output = prettifyOutputForTerminal(problems);
+	console.log(output); // eslint-disable-line
 }
 
 program
