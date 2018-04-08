@@ -3,19 +3,10 @@
 const fs = require('fs');
 const { promisify } = require('util');
 const path = require('path');
+const { isUnwanted } = require('./utils/utils');
 
 const readdir = promisify(fs.readdir);
 const stats = promisify(fs.stat);
-
-function isUnwanted (name, options) {
-	if (options.excludes) {
-		return options.excludes.some((r) => {
-			return r.test(name);
-		});
-	}
-
-	return false;
-}
 
 async function getFileDescriptor (directory, file, options) {
 	const fullFilePath = path.resolve(directory, file);
@@ -57,6 +48,5 @@ async function readRecursivelyDirectory (directory, options) {
 
 module.exports = {
 	getFileDescriptor,
-	isUnwanted,
 	readRecursivelyDirectory
 };

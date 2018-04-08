@@ -1,11 +1,7 @@
 'use strict';
 
-const { concat, isNil } = require('lodash');
 const { resolve } = require('path');
-
-function cleanArray (arr) {
-	return concat(...arr).filter((e) => !isNil(e));
-}
+const { cleanArray } = require('./utils/utils');
 
 async function applyRuleOnSubTree (ruleFunction, element, options) {
 	let problems = [];
@@ -43,7 +39,6 @@ async function applyEachRule (rules, treeView, options) {
 }
 
 module.exports = {
-	cleanArray,
 	applyEachRule,
 	applyRuleOnWholeTree,
 	applyRuleOnSubTree
