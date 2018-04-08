@@ -5,6 +5,10 @@ const { resolve } = require('path');
 const { cleanArray } = require('./utils/utils');
 
 async function applyRuleOnSubTree (ruleFunction, element, options) {
+	if (!element) {
+		return null;
+	}
+
 	let problems = [];
 
 	if (element.content) {
