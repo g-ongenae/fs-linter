@@ -24,7 +24,7 @@ async function main (directory, rules, options) {
 program
 	.version(version)
 	.description(description)
-	.usage('fs-linter -c fsConfig.json -t .')
+	.usage('-d . -r rule1,rule2 -o \'{ "excludes": ["node_modules"] }\'')
 	.option('-d, --directory <dir>', 'Directory to be lint')
 	.option('-r, --rules <rulesFiles>', 'The list of rules ex: rule1,rule2', list)
 	.option('-o, --options <options>', 'List of options for the rules', JSON.parse)
