@@ -3,16 +3,18 @@
 const chalk = require('chalk');
 const { isEmpty } = require('lodash');
 
+const COLORS = {
+	critical: 'cyan',
+	error: 'red',
+	warning: 'yellow',
+	default: 'white',
+};
+
 function getColor (severity) {
-	switch (severity) {
-	case 'critical':
-		return 'cyan';
-	case 'error':
-		return 'red';
-	case 'warning':
-		return 'yellow';
-	default:
-		return 'white';
+	if (Object.keys(COLORS).includes(severity)) {
+		return COLORS[severity];
+	} else {
+		return COLORS.default;
 	}
 }
 
