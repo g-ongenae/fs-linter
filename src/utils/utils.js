@@ -1,6 +1,6 @@
 'use strict';
 
-const { concat, isNil } = require('lodash');
+const { concat, isArray, isNil } = require('lodash');
 
 function cleanArray (arr) {
 	return concat(...arr).filter((e) => !isNil(e));
@@ -8,6 +8,10 @@ function cleanArray (arr) {
 
 function isUnwanted (name, options) {
 	if (options && options.excludes) {
+		if (!isArray(options.excludes)) {
+			options.excludes = [options.excludes];
+		}
+
 		return options.excludes.some((r) => {
 			const re = new RegExp(r);
 			return re.test(name);
